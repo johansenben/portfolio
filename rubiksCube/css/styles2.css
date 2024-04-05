@@ -1,0 +1,409 @@
+@charset "UTF-8";
+@media (orientation: landscape) {
+  html {
+    font-size: 10vh;
+  }
+}
+@media (orientation: portrait) {
+  html {
+    font-size: 8vw;
+  }
+}
+/*body {
+    position: absolute;
+    //background: lightgreen;
+    background: lightgray;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+}*/
+body {
+  position: absolute;
+  background: lightgreen;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.rubiks-container * {
+  transform-style: preserve-3d;
+}
+
+.rubiks-container {
+  width: 75%;
+  perspective: 10rem;
+  perspective-origin: 50% 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#rubiks-cube {
+  --rotate-speed: 0.75s;
+  --r-x: 45deg;
+  --r-y: -45deg;
+  --r-z: 0deg;
+  position: relative;
+  transform: rotateX(var(--r-y)) rotateY(var(--r-x));
+  transform-origin: calc(50% + 0.5rem) calc(50% + 0.5rem) 0;
+}
+
+cube-piece {
+  --bg-front: black;
+  --bg-back: black;
+  --bg-right: black;
+  --bg-left: black;
+  --bg-top: black;
+  --bg-bottom: black;
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  transform: translateX(var(--translateX, 0)) translateY(var(--translateY, 0)) translateZ(var(--translateZ, 0)) rotateX(0) rotateY(0) rotateZ(0);
+  transform-origin: calc(-1 * var(--translateX) + 0.5rem) calc(-1 * var(--translateY) + 0.5rem) calc(-1 * var(--translateZ));
+}
+cube-piece:nth-child(n+19) {
+  --translateY: -1rem;
+}
+cube-piece:nth-child(-n+18):nth-child(n+10) {
+  --translateY: 0rem;
+}
+cube-piece:nth-child(-n+9) {
+  --translateY: 1rem;
+}
+cube-piece:nth-child(9n+1), cube-piece:nth-child(9n+2), cube-piece:nth-child(9n+3) {
+  --translateZ: -1rem;
+}
+cube-piece:nth-child(9n+4), cube-piece:nth-child(9n+5), cube-piece:nth-child(9n+6) {
+  --translateZ: 0rem;
+}
+cube-piece:nth-child(9n+7), cube-piece:nth-child(9n+8), cube-piece:nth-child(9n+9) {
+  --translateZ: 1rem;
+}
+cube-piece:nth-child(3n) {
+  --translateX: 1rem;
+}
+cube-piece:nth-child(3n-1) {
+  --translateX: 0rem;
+}
+cube-piece:nth-child(3n-2) {
+  --translateX: -1rem;
+}
+cube-piece.rotate-white, cube-piece.rotate-yellow {
+  animation: rotate-y var(--rotate-speed);
+}
+cube-piece.rotate-red, cube-piece.rotate-orange {
+  animation: rotate-z var(--rotate-speed);
+}
+cube-piece.rotate-blue, cube-piece.rotate-green {
+  animation: rotate-x var(--rotate-speed);
+}
+
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 0 2px black;
+}
+.side.front {
+  transform: translateZ(0.5rem);
+  background: var(--bg-front);
+}
+.side.back {
+  transform: translateZ(-0.5rem);
+  background: var(--bg-back);
+}
+.side.right {
+  transform: rotateY(90deg) translateZ(0.5rem);
+  background: var(--bg-right);
+}
+.side.left {
+  transform: rotateY(-90deg) translateZ(0.5rem);
+  background: var(--bg-left);
+}
+.side.top {
+  transform: rotateX(-90deg) translateZ(-0.5rem);
+  background: var(--bg-top);
+}
+.side.bottom {
+  transform: rotateX(-90deg) translateZ(0.5rem);
+  background: var(--bg-bottom);
+}
+
+@keyframes rotate-x {
+  from {
+    transform: translateX(var(--translateX, 0)) translateY(var(--translateY, 0)) translateZ(var(--translateZ, 0)) rotateX(var(--rotate-deg)) rotateY(0) rotateZ(0);
+  }
+}
+@keyframes rotate-y {
+  from {
+    transform: translateX(var(--translateX, 0)) translateY(var(--translateY, 0)) translateZ(var(--translateZ, 0)) rotateX(0) rotateY(var(--rotate-deg)) rotateZ(0);
+  }
+}
+@keyframes rotate-z {
+  from {
+    transform: translateX(var(--translateX, 0)) translateY(var(--translateY, 0)) translateZ(var(--translateZ, 0)) rotateX(0) rotateY(0) rotateZ(var(--rotate-deg));
+  }
+}
+.controls {
+  user-select: none;
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: 1.5rem;
+  font-size: 0.125rem;
+  transform: scale(1.5);
+}
+.controls .button {
+  width: 100%;
+  box-shadow: 0 0 0 1px inset black;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.4rem;
+  font-weight: bolder;
+}
+.controls .button.clockwise::after {
+  content: "↻";
+}
+.controls .button.counter-clockwise::after {
+  content: "↺";
+}
+.controls .button:hover {
+  transform: scale(1.1);
+}
+.controls .button:active {
+  transform: scale(1);
+}
+.controls .button.randomize, .controls .button.reset, .controls .button.algorithms {
+  width: 1.5rem;
+  height: 0.5rem;
+  background: lightgray;
+  font-size: 0.25rem;
+}
+.controls .button.undo {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: lightgray;
+  font-size: 0.17rem;
+}
+.controls .button.undo-all {
+  width: 1rem;
+  height: 0.5rem;
+  background: lightgray;
+  font-size: 0.2rem;
+}
+.controls .button.algorithms {
+  position: relative;
+}
+.controls .button.algorithms .menu {
+  background: lightgray;
+  border: solid 0.05rem;
+  position: absolute;
+  bottom: -0.5rem;
+  right: -0.1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.controls .button.algorithms .menu .page {
+  display: none;
+}
+.controls .button.algorithms .menu:has(#page1-radio:checked) .page1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.controls .button.algorithms .menu:has(#page2-radio:checked) .page2 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.controls .button.algorithms .menu:has(#page3-radio:checked) .page3 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.controls .button.algorithms .menu input[type=radio], .controls .button.algorithms .menu input[type=checkbox] {
+  display: none;
+}
+.controls .button.algorithms .menu input[type=radio]:checked + label::after, .controls .button.algorithms .menu input[type=checkbox]:checked + label::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  background: black;
+}
+.controls .button.algorithms .menu label {
+  width: 0.2rem;
+  height: 0.2rem;
+  background: #bbb;
+  border: solid 2px var(--color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.controls .button.algorithms .menu label:hover {
+  transform: scale(1.2);
+}
+.controls .button.algorithms .menu label:active {
+  transform: scale(1);
+}
+.controls .button.algorithms .menu .algorithm {
+  position: relative;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  box-shadow: 0 0 0 1px inset black;
+  background: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+.controls .button.algorithms .menu .algorithm img {
+  max-width: 90%;
+  max-height: 90%;
+}
+.controls .button.algorithms .menu .algorithm-label {
+  position: relative;
+  width: 6rem;
+  height: 0.5rem;
+  box-shadow: 0 0 0 1px inset black;
+  background: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.controls .button.algorithms .menu .algorithm-label {
+  justify-content: center;
+}
+.controls .button.algorithms .menu .algorithm-settings {
+  width: 6rem;
+  box-shadow: 0 0 0 2px inset black;
+  background: lightgray;
+}
+.controls .button.algorithms .menu .algorithm-settings * {
+  margin-left: 0.2rem;
+}
+.controls .button.algorithms .menu .algorithm-settings div {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.2rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.controls .button.algorithms .menu .algorithm-settings div input[type=range] {
+  transform: scale(0.75);
+  max-width: 40%;
+}
+.controls .button.algorithms .menu {
+  transform: scale(0);
+  transition: transform 0.5s;
+  transform-origin: calc(100% - 0.1rem) calc(100% - 0.5rem);
+  /*& .page {
+      display: flex;
+      overflow-x: scroll;
+      max-width: 6rem;
+      flex-shrink: 0;
+  }*/
+}
+.controls .button.algorithms:hover, .controls .button.algorithms:hover .menu {
+  transform: scale(1);
+}
+.controls .rotate-y {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 0.1rem;
+  font-size: 0.2rem;
+}
+.controls .rotate-y .toggle {
+  position: relative;
+  width: 0.25rem;
+  height: 0.5rem;
+  border-radius: 0.125rem;
+  box-shadow: inset 0 0 0 1px black;
+  background: lightgray;
+}
+.controls .rotate-y .toggle::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 50%;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.5px lightgray, inset 0 0 0 2px black;
+  transition: top 0.5s, background 0.5s;
+}
+.controls .rotate-y .toggle[state=top-view]::after {
+  background: white;
+  top: 0;
+}
+.controls .rotate-y .toggle[state=bottom-view]::after {
+  background: yellow;
+  top: 50%;
+}
+.controls .rotate-y .toggle:hover::after {
+  transform: scale(1.2);
+}
+.controls .rotate-y .toggle:active::after {
+  transform: scale(1);
+}
+.controls .rotate-y .label {
+  display: flex;
+  align-items: center;
+  font-size: 0.22rem;
+  white-space: nowrap;
+  font-weight: bold;
+}
+.controls .rotate-y .label div {
+  text-align: right;
+  padding-left: 0.07rem;
+  font-size: 0.15rem;
+  display: flex;
+  line-height: 0.25rem;
+}
+.controls .rotate-x {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 0.1rem;
+  font-size: 0.25rem;
+  font-weight: bold;
+}
+.controls .rotate-x .arrow {
+  display: flex;
+}
+.controls .rotate-x .left, .controls .rotate-x .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.25rem;
+  height: 0.25rem;
+  box-shadow: inset 0 0 0 1px black;
+  background: lightgray;
+  font-size: 0.2rem;
+}
+.controls .rotate-x .right::after, .controls .rotate-x .left::after {
+  content: "➤";
+}
+.controls .rotate-x .left::after {
+  transform: scale(-1, 1);
+}
+.controls .rotate-x .button:hover {
+  transform: scale(1.2);
+}
+.controls .rotate-x .button:active {
+  transform: scale(1);
+}
+
+/*# sourceMappingURL=styles2.css.map */

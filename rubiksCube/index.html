@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubik's Cube</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="rubiks-container">
+        <div id="rubiks-cube"></div>
+    </div>
+    <div class="controls">
+        <div class="rotate-x">
+            <div>Rotate X</div>
+            <div class="arrow">
+                <div class="button left" ></div>
+                <div class="button right"></div>
+            </div>
+        </div>
+        <div class="rotate-y">
+            <div class="label">
+                Y View
+                <div>Top<br>Bottom</div>
+            </div>
+            <div class="toggle" state="top-view"></div>
+        </div>
+        <div class="rotate-buttons" style="display: grid; grid-template-columns: 0.5rem 0.5rem 0.5rem;">
+            <div class="button clockwise" style="background: white"></div>
+            <div class="button clockwise" style="background: yellow"></div>
+            <div class="button clockwise" style="background: red"></div>
+            <div class="button counter-clockwise" style="background: white"></div>
+            <div class="button counter-clockwise" style="background: yellow"></div>
+            <div class="button counter-clockwise" style="background: red"></div>
+            <div class="button clockwise" style="background: orange"></div>
+            <div class="button clockwise" style="background: blue"></div>
+            <div class="button clockwise" style="background: green"></div>
+            <div class="button counter-clockwise" style="background: orange"></div>
+            <div class="button counter-clockwise" style="background: blue"></div>
+            <div class="button counter-clockwise" style="background: green"></div>
+        </div>
+        <div class="button randomize">Randomize</div>
+        <div class="button reset">Reset</div>
+        <div class="button undo">Undo</div>
+        <div class="button undo-all">Undo All</div>
+        <div class="algorithms">Algorithms
+            <div class="menu">
+                <div class="algorithm-label">Algorithms</div>
+                <div class="algorithm-settings">
+                    <div class="speed-slider">Speed
+                        <input type="range" name="speed" id="speed" min="0" max="10" value="1">
+                    </div>
+                    <div class="is-reverse-switch">Reverse
+                        <input type="checkbox" name="is-reverse" id="is-reverse">
+                        <label for="is-reverse" style="--color:gray"></label>
+                    </div>
+                    <div class="top-radio-btns">Top
+                        <input type="radio" name="top-radio-btns" id="radio-white" radio-color="white" checked>
+                        <label for="radio-white" style="--color:white"></label>
+                        <input type="radio" name="top-radio-btns" id="radio-yellow" radio-color="yellow">
+                        <label for="radio-yellow" style="--color:yellow"></label>
+                    </div>
+                    <div class="front-radio-btns">Front
+                        <input type="radio" name="front-radio-btns" id="radio-red" radio-color="red" checked>
+                        <label for="radio-red" style="--color:red"></label>
+                        <input type="radio" name="front-radio-btns" id="radio-blue" radio-color="blue">
+                        <label for="radio-blue" style="--color:blue"></label>
+                        <input type="radio" name="front-radio-btns" id="radio-orange" radio-color="orange">
+                        <label for="radio-orange" style="--color:orange"></label>
+                        <input type="radio" name="front-radio-btns" id="radio-green" radio-color="green">
+                        <label for="radio-green" style="--color:green"></label>
+                    </div>
+                </div>
+                
+                <div class="page page1">
+                    
+                    <div class="algorithm">
+                        <img src="img/algorithm1.png" alt="">
+                    </div>
+                    <div class="algorithm">
+                        <img src="img/algorithm2.png" alt="">
+                    </div>
+                    <div class="algorithm">
+                        <img src="img/algorithm3.png" alt="">
+                    </div>
+                    <div class="algorithm">
+                        <img src="img/algorithm4.png" alt="">
+                    </div>
+                </div>
+                <div class="page page2">
+                    
+                    <div class="algorithm">
+                        <img src="img/algorithm5.png" alt="">
+                    </div>
+                    <div class="algorithm">
+                        <img src="img/algorithm6.png" alt="">
+                    </div>
+                    <div class="algorithm">
+                        <img src="img/algorithm7.png" alt="">
+                    </div>
+                    <div class="algorithm">
+                        <img src="img/algorithm8.png" alt="">
+                    </div>
+                </div>
+                <div class="page page3">
+                    
+                    <div class="algorithm">
+                    </div>
+                    <div class="algorithm">
+                    </div>
+                    <div class="algorithm">
+                    </div>
+                    <div class="algorithm">
+                    </div>
+                </div>
+                Page
+                <input type="radio" name="page" id="page1-radio" class="page-radio" checked>
+                <label for="page1-radio" style="--color:black;margin-left:0.2rem"></label>
+                <input type="radio" name="page" id="page2-radio" class="page-radio">
+                <label for="page2-radio" style="--color:black;margin-left:0.1rem"></label>
+                <input type="radio" name="page" id="page3-radio" class="page-radio">
+                <label for="page3-radio" style="--color:black;margin-left:0.1rem"></label>
+            </div>
+        </div>
+    </div>
+    <script src="js/events.js" type="module"></script>
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>
+<!--
+    todo
+    -add rotate animation to cube
+    -change cube to component for setup
+
+    -add comments
+    -reorganize code
+-->

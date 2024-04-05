@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "chess": "^1.1.0"
+  },
+  "name": "chess",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "js/app.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

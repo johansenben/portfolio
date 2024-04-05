@@ -1,0 +1,199 @@
+*{
+    user-select: none; 
+    cursor: default;
+}
+:root{
+    --width: 850px;
+    --height: 738px;
+    --boardWidth: 638px;
+}
+#game{
+    width: var(--width);
+    height: var(--height);
+    display: grid;
+    grid-template-columns: var(--boardWidth) 10px 70px 10px 120px;
+    grid-template-rows: var(--boardWidth) 100px;
+}
+#board{
+    display: grid;
+    grid-template-columns: 2px 70px 70px 70px 2px 70px 70px 70px 2px 70px 70px 70px 2px;
+    grid-template-rows: 2px 70px 70px 70px 2px 70px 70px 70px 2px 70px 70px 70px 2px;
+}
+#numberButtons{
+    display: grid;
+    grid-template-rows: 2px 70px 70px 70px 2px 70px 70px 70px 2px 70px 70px 70px;
+}
+.numberButton{
+    font-size: 65px;
+    text-align: center;
+    width: 65px;
+    height: 65px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    font-family: Arial;
+}
+.numberButton.selected{
+    background-color: lime; 
+    color: black; 
+    border-color: black; 
+    line-height:60px
+}
+.numberButton.unselected{
+    background-color: lightgray; 
+    color: black; 
+    border-color: black;
+    line-height:60px;
+}
+.cell{
+    border: solid black 2px;
+    text-align: center;
+    font-size: 65px;
+}
+.cell.pencil{
+    border: solid black 2px;
+    text-align: center;
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: 20px 20px 20px;
+    grid-template-rows: 20px 20px 20px;
+}
+.cell.correct{
+    color: royalblue; 
+    font-family: Arial;
+}
+.cell.locked{
+    color: black; 
+    font-weight: bold; 
+    font-family: Arial;
+}
+.cell.incorrect{
+    color: red; 
+    font-family: Arial;
+}
+.cell.selected{
+    background-color: cornflowerblue;
+}
+.cell.highlighted{
+    background-color: lightskyblue;
+}
+.line{
+    background-color: black;
+}
+#buttons{
+    margin-top: 5px;
+    display: grid;
+    grid-template-rows: 60px 60px 60px 60px 60px 60px 100px 60px 60px;
+}
+.button{
+    width: 110px;
+    height: 40px;
+    background-color: lightgray;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: lime;
+    border-style: solid;
+}
+.button.label{
+    text-align: center; 
+    font-size: 30px; 
+    line-height: 40px; 
+    font-weight: bold;
+}
+.button.label.fastPencil{
+    font-size: 16px;
+    line-height: 35px;
+}
+#pencilButton.on{
+    width: 110px;
+    height: 40px;
+    background-color: lime;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    font-size: 28px;
+    color: black;
+    line-height: 40px;
+}
+#pencilButton.off{
+    width: 110px;
+    height: 40px;
+    background-color: lightgray;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    font-size: 28px;
+    color: black;
+    line-height: 40px;
+}
+#toggleModeButton.on{
+    width: 110px;
+    height: 40px;
+    background-color: lime;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    line-height: 40px;
+}
+#toggleModeButton.off{
+    width: 110px;
+    height: 40px;
+    background-color: lightgray;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    line-height: 40px;
+}
+.button.label.newGame{
+    font-size: 18px;
+    line-height: 35px;
+}
+.showNewGameMenu{
+    position: absolute;
+    background-color: lightgray;
+    border:black solid 2px;
+    width: var(--boardWidth);
+    height: var(--boardWidth);
+    padding-right: 85px;
+    padding-bottom: 10px;
+    top: 0px;
+    left: 0px;
+}
+.difficultyButton{
+    width: 300px;
+    height: 75px;
+    font-size: 50px;
+    position: relative;
+    top: 50px;
+    left: 200px;
+    background-color: lightgreen;
+    color: blue;
+    border: solid blue 2px;
+    border-radius: 40px;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 75px;
+}
+
+#mistakes{
+    color: blue;
+    font-size: 30px;
+    float: left;
+}
+#timer{
+    margin-left: 200px;
+    color: blue;
+    font-size: 30px;
+}

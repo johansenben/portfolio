@@ -1,0 +1,38 @@
+<html>
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="styles.css">
+    <body>
+        <div id="game">
+            <div id="board"></div>
+            <div></div>
+            <div id="numberButtons"></div>
+            <div></div>
+            <div id="buttons">
+                <div class="button label" onclick="solve()">SOLVE</div>
+                <div class="button label" onclick="hint()">HINT</div>
+                <div class="button label fastPencil" onclick="fastPencil()">FAST PENCIL</div>
+                <div class="button label" onclick="erase()">ERASE</div>
+                <div id="pencilButton" class="button label off" onclick="togglePencil()">PENCIL</div>
+                <div id="toggleModeButton" class="button label off" onclick="toggleMode()">TOGGLE MODE</div>
+                <div></div>
+                <div class="button label newGame" onclick="newGameMenu()">NEW GAME</div>
+                <div class="button label" onclick="clearBoard()">CLEAR</div>
+            </div>
+            <div>
+                <div id="mistakes">mistakes: 0</div>
+                <div id="timer">00:00</div>
+            </div>
+            <div id="newGameMenu"></div>
+        </div>
+        <script src="App.js"></script>
+        <script src="Setup.js"></script>
+    </body>
+</html>
+
+<!-- 
+    todo
+    -add toggle animations
+    -organize code, add another file if needed
+    -hide number buttons when all numbers are fillid in
+    -higlight/color pencil numbers that are same as selected square
+-->
